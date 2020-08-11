@@ -7,4 +7,6 @@
     <string name="dieu_hoa">Điều hòa</string>
     <string name="phun_suong">Phun sương</string>
     <string name="loc_khi">lọc khí</string>
+    <string name="on">Mở</string>
+    <string name="off">Tắt</string>
 </resources>

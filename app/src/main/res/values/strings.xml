@@ -7,4 +7,6 @@
     <string name="dieu_hoa">cold machine</string>
     <string name="phun_suong">Mist spray</string>
     <string name="loc_khi">Air purification</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
 </resources>

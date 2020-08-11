@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +32,10 @@ import java.util.Random;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-
     private ThermometerView thermometerTv;
+    private Button button1, button2, button3;
+
+    boolean state_button1 = false, state_button2 = false, state_button3 = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +49,10 @@ public class HomeFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        button1 = root.findViewById(R.id.button1);
+        button2 = root.findViewById(R.id.button2);
+        button3 = root.findViewById(R.id.button3);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
 
@@ -88,6 +95,45 @@ public class HomeFragment extends Fragment {
 //                thermometerTv.setCurValue(getRandomValue());
 //            }
 //        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (state_button1) {
+                    button1.setText(getText(R.string.dieu_hoa) + "\n"+ getText(R.string.off));
+                }
+                else {
+                    button1.setText(getText(R.string.dieu_hoa) + "\n"+ getText(R.string.on));
+                }
+                state_button1=!state_button1;
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (state_button2) {
+                    button2.setText(getText(R.string.phun_suong) + "\n"+ getText(R.string.off));
+                }
+                else {
+                    button2.setText(getText(R.string.phun_suong) + "\n"+ getText(R.string.on));
+                }
+                state_button2=!state_button2;
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (state_button3) {
+                    button3.setText(getText(R.string.loc_khi) + "\n"+ getText(R.string.off));
+                }
+                else {
+                    button3.setText(getText(R.string.loc_khi) + "\n"+ getText(R.string.on));
+                }
+                state_button3=!state_button3;
+            }
+        });
 
         return root;
     }
