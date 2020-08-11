@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">Phòng khách</string>
+    <string name="title_dashboard">Phòng ngủ 1</string>
+    <string name="title_notifications">Phòng ngủ 2</string>
+    <string name="error">Lỗi hệ thống</string>
+    <string name="dieu_hoa">Điều hòa</string>
+    <string name="phun_suong">Phun sương</string>
+    <string name="loc_khi">lọc khí</string>
+</resources>
