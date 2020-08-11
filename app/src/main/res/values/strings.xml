@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pure Life</string>
+    <string name="title_home">Living Room</string>
+    <string name="title_dashboard">Bed Room 1</string>
+    <string name="title_notifications">Bed Room 2</string>
+    <string name="error">Error</string>
+</resources>
