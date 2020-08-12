@@ -1,5 +1,6 @@
 package com.haqyna.purelife;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -69,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.item1:
-                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this, SettingActivity.class));
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
