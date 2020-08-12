@@ -33,7 +33,8 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private ThermometerView thermometerTv;
-    private Button button1, button2, button3;
+    Button button1, button2, button3;
+    TextView text_humidity, text_CO, text_PM;
 
     boolean state_button1 = false, state_button2 = false, state_button3 = false;
 
@@ -54,9 +55,20 @@ public class HomeFragment extends Fragment {
         button2 = root.findViewById(R.id.button2);
         button3 = root.findViewById(R.id.button3);
 
+        text_humidity = root.findViewById(R.id.text_humidity);
+        text_CO = root.findViewById(R.id.text_CO);
+        text_PM = root.findViewById(R.id.text_PM);
+
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
 
+//        hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq
+//        11:52
+//        oIXHj_zEa_p1GFQcQ12r34VRYRaORok7
+
         String url = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V5";
+        String urlDoAm = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V6";
+        String urlPM = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V7";
+        String urlCO = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V8";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -68,7 +80,7 @@ public class HomeFragment extends Fragment {
 
                         String temp = response.toString().substring(2, l-2);
 
-                        textView.setText(temp);
+                        textView.setText(temp + " °C");
                     }
                 },
                 new Response.ErrorListener() {
@@ -78,6 +90,69 @@ public class HomeFragment extends Fragment {
                     }
                 });
         requestQueue.add(jsonArrayRequest);
+
+        JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.GET, urlDoAm, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+//                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+
+                        int l = response.toString().length();
+
+                        String temp = response.toString().substring(2, l-2);
+
+                        text_humidity.setText(temp);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+        requestQueue.add(jsonArrayRequest2);
+
+        JsonArrayRequest jsonArrayRequest3 = new JsonArrayRequest(Request.Method.GET, urlPM, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+//                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+
+                        int l = response.toString().length();
+
+                        String temp = response.toString().substring(2, l-2);
+
+                        text_CO.setText(temp);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+        requestQueue.add(jsonArrayRequest3);
+
+        JsonArrayRequest jsonArrayRequest4 = new JsonArrayRequest(Request.Method.GET, urlCO, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+//                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+
+                        int l = response.toString().length();
+
+                        String temp = response.toString().substring(2, l-2);
+
+                        text_PM.setText(temp);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+        requestQueue.add(jsonArrayRequest4);
 
 //        thermometerTv = root.findViewById(R.id.tv_thermometer);
 //
