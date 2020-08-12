@@ -96,14 +96,18 @@ public class HomeFragment extends Fragment {
 //            }
 //        });
 
+        button1.setText(getText(R.string.on) + "\n"+ getText(R.string.dieu_hoa));
+        button2.setText(getText(R.string.on) + "\n"+ getText(R.string.phun_suong));
+        button3.setText(getText(R.string.on)+ "\n"+ getText(R.string.loc_khi));
+
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (state_button1) {
-                    button1.setText(getText(R.string.dieu_hoa) + "\n"+ getText(R.string.off));
+                    button1.setText(getText(R.string.off)+ "\n"+ getText(R.string.dieu_hoa));
                 }
                 else {
-                    button1.setText(getText(R.string.dieu_hoa) + "\n"+ getText(R.string.on));
+                    button1.setText(getText(R.string.on) + "\n"+ getText(R.string.dieu_hoa));
                 }
                 state_button1=!state_button1;
             }
@@ -113,10 +117,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (state_button2) {
-                    button2.setText(getText(R.string.phun_suong) + "\n"+ getText(R.string.off));
+                    button2.setText(getText(R.string.off) + "\n"+ getText(R.string.phun_suong));
                 }
                 else {
-                    button2.setText(getText(R.string.phun_suong) + "\n"+ getText(R.string.on));
+                    button2.setText(getText(R.string.on) + "\n"+ getText(R.string.phun_suong));
                 }
                 state_button2=!state_button2;
             }
@@ -126,10 +130,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (state_button3) {
-                    button3.setText(getText(R.string.loc_khi) + "\n"+ getText(R.string.off));
+                    button3.setText(getText(R.string.off)+ "\n"+ getText(R.string.loc_khi));
                 }
                 else {
-                    button3.setText(getText(R.string.loc_khi) + "\n"+ getText(R.string.on));
+                    button3.setText(getText(R.string.on)+ "\n"+ getText(R.string.loc_khi));
                 }
                 state_button3=!state_button3;
             }
