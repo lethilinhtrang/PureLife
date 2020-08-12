@@ -31,6 +31,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
+            android:layout_marginBottom="8dp"
             android:weightSum="3">
 
             <TextView
@@ -73,9 +74,10 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/ic_opacity_blue_24dp"
                     android:gravity="center"
+                    android:background="#ffffff"
                     android:text="Độ ẩm
                     85%"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -88,11 +90,12 @@
                         android:id="@+id/text_CO"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="5dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:background="#ffffff"
                         android:text="Khí CO 0.01%" />
 
                     <TextView
@@ -103,6 +106,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
+                        android:background="#ffffff"
                         android:gravity="center"
                         android:text="Bụi PM2.5 70 AQI" />
 
@@ -124,6 +128,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#00CED1"
+            android:textColor="#ffffff"
             android:text="@string/dieu_hoa" />
 
         <Button
@@ -131,7 +136,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#00CED1"
+            android:background="#48D1CC"
+            android:textColor="#ffffff"
             android:text="@string/phun_suong" />
 
         <Button
@@ -139,7 +145,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#00CED1"
+            android:background="#40E0D0"
+            android:textColor="#ffffff"
             android:text="@string/loc_khi" />
 
     </LinearLayout>
