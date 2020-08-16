@@ -1,12 +1,15 @@
-<resources>
+<resourcesco>
     <string name="app_name" translatable="false">Pure Life</string>
     <string name="title_home">Living Room</string>
     <string name="title_dashboard">Bed Room 1</string>
     <string name="title_notifications">Bed Room 2</string>
     <string name="error">Error</string>
+    <string name="canh_bao_nhiet_do_do_am">temperature, humidity:</string>
+    <string name="canh_bao_khi_co">CO:</string>
+    <string name="canh_bao_bui_PM2.5">PM 2.5:</string>
     <string name="dieu_hoa">cold machine</string>
     <string name="phun_suong">Mist spray</string>
     <string name="loc_khi">Air purification</string>
     <string name="on">On</string>
     <string name="off">Off</string>
-</resources>
+</resourcesco>

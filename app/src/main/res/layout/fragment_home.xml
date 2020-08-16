@@ -44,7 +44,9 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="40sp" />
+                android:textColor="#00CED1"
+                android:background="#ffffff"
+                android:textSize="30sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,10 +64,9 @@
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:background="#ffffff"
-                    android:drawableLeft="@drawable/ic_opacity_blue_24dp"
+                    android:drawableBottom="@drawable/ic_opacity_blue_24dp"
                     android:gravity="center"
-                    android:text="Độ ẩm
-                    85%"
+                    android:textColor="#00CED1"
                     android:textSize="17sp" />
 
                 <LinearLayout
@@ -85,7 +86,8 @@
                         android:layout_weight="1"
                         android:background="#ffffff"
                         android:gravity="center"
-                        android:text="Khí CO 0.01%" />
+                        android:textSize="12sp"
+                        android:textColor="#00CED1" />
 
                     <TextView
                         android:id="@+id/text_PM"
@@ -97,7 +99,8 @@
                         android:layout_weight="1"
                         android:background="#ffffff"
                         android:gravity="center"
-                        android:text="Bụi PM2.5 70 AQI" />
+                        android:textSize="12sp"
+                        android:textColor="#00CED1" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -117,9 +120,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="hiển thị giờ và cảnh báo ở đây"
-                android:textSize="35sp" />
+                    android:gravity="left"
+                    android:background="#ffffff"
+                android:text="@string/canh_bao_nhiet_do_do_am"
+                android:textSize="15sp" />
                 <TextView
                     android:id="@+id/text2"
                     android:layout_width="match_parent"
@@ -128,9 +132,10 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="hiển thị giờ và cảnh báo ở đây"
-                    android:textSize="35sp" />
+                    android:gravity="left"
+                    android:background="#ffffff"
+                    android:text="@string/canh_bao_khi_co"
+                    android:textSize="15sp" />
                 <TextView
                     android:id="@+id/text3"
                     android:layout_width="match_parent"
@@ -139,9 +144,10 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="hiển thị giờ và cảnh báo ở đây"
-                    android:textSize="35sp" />
+                    android:gravity="left"
+                    android:background="#ffffff"
+                    android:text="@string/canh_bao_bui_PM2.5"
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
