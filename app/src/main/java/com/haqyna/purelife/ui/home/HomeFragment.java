@@ -101,7 +101,7 @@ public class HomeFragment extends Fragment {
 
                         String temp = response.toString().substring(2, l-2);
 
-                        text_humidity.setText(temp);
+                        text_humidity.setText(temp + " %");
                     }
                 },
                 new Response.ErrorListener() {
@@ -122,7 +122,7 @@ public class HomeFragment extends Fragment {
 
                         String temp = response.toString().substring(2, l-2);
 
-                        text_CO.setText(temp);
+                        text_CO.setText(temp+ " PPM");
                     }
                 },
                 new Response.ErrorListener() {
@@ -143,7 +143,7 @@ public class HomeFragment extends Fragment {
 
                         String temp = response.toString().substring(2, l-2);
 
-                        text_PM.setText(temp);
+                        text_PM.setText(temp+ " µg/m3");
                     }
                 },
                 new Response.ErrorListener() {

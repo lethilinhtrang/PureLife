@@ -1,4 +1,4 @@
-<resourcesco>
+<resources>
     <string name="app_name" translatable="false">Pure Life</string>
     <string name="title_home">Living Room</string>
     <string name="title_dashboard">Bed Room 1</string>
@@ -12,4 +12,4 @@
     <string name="loc_khi">Air purification</string>
     <string name="on">On</string>
     <string name="off">Off</string>
-</resourcesco>
+</resources>

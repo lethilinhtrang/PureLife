@@ -113,6 +113,7 @@
                 android:weightSum="3">
 
                 <TextView
+                    android:paddingLeft="5dp"
                 android:id="@+id/text1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -125,6 +126,7 @@
                 android:text="@string/canh_bao_nhiet_do_do_am"
                 android:textSize="15sp" />
                 <TextView
+                    android:paddingLeft="5dp"
                     android:id="@+id/text2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -137,6 +139,7 @@
                     android:text="@string/canh_bao_khi_co"
                     android:textSize="15sp" />
                 <TextView
+                    android:paddingLeft="5dp"
                     android:id="@+id/text3"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
