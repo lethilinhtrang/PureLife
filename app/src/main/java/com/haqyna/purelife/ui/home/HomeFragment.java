@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
 
                         Float nhietdo = Float.parseFloat(tempNhietDo);
 
-                        if ((nhietdo >= 30f) && (nhietdo < 35f)) {
+                        if ((nhietdo >= 15f) && (nhietdo < 35f)) {
                             text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.tot));
                             text1.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
                         }
