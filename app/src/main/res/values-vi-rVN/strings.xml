@@ -4,9 +4,16 @@
     <string name="title_dashboard">Phòng ngủ 1</string>
     <string name="title_notifications">Phòng ngủ 2</string>
     <string name="error">Lỗi hệ thống</string>
+    <string name="canh_bao_nhiet_do_do_am">Nhiệt độ, độ ẩm:</string>
+    <string name="canh_bao_khi_co">Khí CO:</string>
+    <string name="canh_bao_bui_PM2.5">Bụi PM 2.5:</string>
     <string name="dieu_hoa">Điều hòa</string>
     <string name="phun_suong">Phun sương</string>
     <string name="loc_khi">lọc khí</string>
     <string name="on">Mở</string>
     <string name="off">Tắt</string>
+    <string name="nhiet_do">Nhiệt độ</string>
+    <string name="do_am">Độ ẩm</string>
+    <string name="co">Khí CO</string>
+    <string name="bui_pm_25">Bụi PM 2.5</string>
 </resources>

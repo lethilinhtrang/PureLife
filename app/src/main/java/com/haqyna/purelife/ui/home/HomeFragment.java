@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment {
 
                         String temp = response.toString().substring(2, l-2);
 
-                        textView.setText(temp + " °C");
+                        textView.setText(getString(R.string.nhiet_do)+"\n"+temp + " °C");
                     }
                 },
                 new Response.ErrorListener() {
@@ -101,7 +101,7 @@ public class HomeFragment extends Fragment {
 
                         String temp = response.toString().substring(2, l-2);
 
-                        text_humidity.setText(temp);
+                        text_humidity.setText(getString(R.string.do_am)+"\n"+temp + " %");
                     }
                 },
                 new Response.ErrorListener() {
@@ -122,7 +122,7 @@ public class HomeFragment extends Fragment {
 
                         String temp = response.toString().substring(2, l-2);
 
-                        text_CO.setText(temp);
+                        text_CO.setText(getString(R.string.co)+"\n"+temp+ " PPM");
                     }
                 },
                 new Response.ErrorListener() {
@@ -143,7 +143,7 @@ public class HomeFragment extends Fragment {
 
                         String temp = response.toString().substring(2, l-2);
 
-                        text_PM.setText(temp);
+                        text_PM.setText(getString(R.string.bui_pm_25)+"\n"+temp+ "\n (µg/m3)");
                     }
                 },
                 new Response.ErrorListener() {

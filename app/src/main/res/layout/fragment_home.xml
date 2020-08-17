@@ -29,22 +29,11 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_marginBottom="8dp"
             android:weightSum="3">
 
-            <TextView
-                android:id="@+id/text_clock"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="hiển thị giờ và cảnh báo ở đây"
-                android:textSize="35sp" />
 
             <TextView
                 android:id="@+id/text_home"
@@ -55,7 +44,9 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="40sp" />
+                android:textColor="#00CED1"
+                android:background="#ffffff"
+                android:textSize="25sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,11 +63,10 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_opacity_blue_24dp"
-                    android:gravity="center"
                     android:background="#ffffff"
-                    android:text="Độ ẩm
-                    85%"
+                    android:drawableBottom="@drawable/ic_opacity_blue_24dp"
+                    android:gravity="center"
+                    android:textColor="#00CED1"
                     android:textSize="17sp" />
 
                 <LinearLayout
@@ -94,9 +84,10 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="5dp"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:background="#ffffff"
-                        android:text="Khí CO 0.01%" />
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:textColor="#00CED1" />
 
                     <TextView
                         android:id="@+id/text_PM"
@@ -108,9 +99,58 @@
                         android:layout_weight="1"
                         android:background="#ffffff"
                         android:gravity="center"
-                        android:text="Bụi PM2.5 70 AQI" />
+                        android:textSize="12sp"
+                        android:textColor="#00CED1" />
 
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <TextView
+                    android:paddingLeft="5dp"
+                android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                    android:gravity="left"
+                    android:background="#ffffff"
+                android:text="@string/canh_bao_nhiet_do_do_am"
+                android:textSize="15sp" />
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:id="@+id/text2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:background="#ffffff"
+                    android:text="@string/canh_bao_khi_co"
+                    android:textSize="15sp" />
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:id="@+id/text3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:background="#ffffff"
+                    android:text="@string/canh_bao_bui_PM2.5"
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -128,8 +168,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#00CED1"
-            android:textColor="#ffffff"
-            android:text="@string/dieu_hoa" />
+            android:text="@string/dieu_hoa"
+            android:textColor="#ffffff" />
 
         <Button
             android:id="@+id/button2"
@@ -137,8 +177,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#48D1CC"
-            android:textColor="#ffffff"
-            android:text="@string/phun_suong" />
+            android:text="@string/phun_suong"
+            android:textColor="#ffffff" />
 
         <Button
             android:id="@+id/button3"
@@ -146,8 +186,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#40E0D0"
-            android:textColor="#ffffff"
-            android:text="@string/loc_khi" />
+            android:text="@string/loc_khi"
+            android:textColor="#ffffff" />
 
     </LinearLayout>
 
