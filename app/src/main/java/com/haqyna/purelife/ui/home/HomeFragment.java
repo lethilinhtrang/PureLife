@@ -34,7 +34,9 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private ThermometerView thermometerTv;
     Button button1, button2, button3;
-    TextView text_humidity, text_CO, text_PM;
+    TextView text_nhietdo, text_humidity, text_CO, text_PM, text1;
+    Float nhietdo ;
+    String temp = "";
 
     boolean state_button1 = false, state_button2 = false, state_button3 = false;
 
@@ -43,21 +45,17 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
 
         button1 = root.findViewById(R.id.button1);
         button2 = root.findViewById(R.id.button2);
         button3 = root.findViewById(R.id.button3);
 
+        text_nhietdo = root.findViewById(R.id.text_nhietdo);
         text_humidity = root.findViewById(R.id.text_humidity);
         text_CO = root.findViewById(R.id.text_CO);
         text_PM = root.findViewById(R.id.text_PM);
+        text1 = root.findViewById(R.id.text1);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
 
@@ -75,12 +73,13 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(JSONArray response) {
 //                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
-
+nhietdo=0f;
                         int l = response.toString().length();
 
-                        String temp = response.toString().substring(2, l-2);
+                        temp = response.toString().substring(2, l - 2);
+                        nhietdo = Float.valueOf(temp);
 
-                        textView.setText(getString(R.string.nhiet_do)+"\n"+temp + " °C");
+                        text_nhietdo.setText(getString(R.string.nhiet_do) + "\n" + temp + " °C");
                     }
                 },
                 new Response.ErrorListener() {
@@ -99,9 +98,9 @@ public class HomeFragment extends Fragment {
 
                         int l = response.toString().length();
 
-                        String temp = response.toString().substring(2, l-2);
+                        String temp = response.toString().substring(2, l - 2);
 
-                        text_humidity.setText(getString(R.string.do_am)+"\n"+temp + " %");
+                        text_humidity.setText(getString(R.string.do_am) + "\n" + temp + " %");
                     }
                 },
                 new Response.ErrorListener() {
@@ -120,9 +119,9 @@ public class HomeFragment extends Fragment {
 
                         int l = response.toString().length();
 
-                        String temp = response.toString().substring(2, l-2);
+                        String temp = response.toString().substring(2, l - 2);
 
-                        text_CO.setText(getString(R.string.co)+"\n"+temp+ " PPM");
+                        text_CO.setText(getString(R.string.co) + "\n" + temp + " PPM");
                     }
                 },
                 new Response.ErrorListener() {
@@ -141,9 +140,9 @@ public class HomeFragment extends Fragment {
 
                         int l = response.toString().length();
 
-                        String temp = response.toString().substring(2, l-2);
+                        String temp = response.toString().substring(2, l - 2);
 
-                        text_PM.setText(getString(R.string.bui_pm_25)+"\n"+temp+ "\n (µg/m3)");
+                        text_PM.setText(getString(R.string.bui_pm_25) + "\n" + temp + "\n (µg/m3)");
                     }
                 },
                 new Response.ErrorListener() {
@@ -171,20 +170,19 @@ public class HomeFragment extends Fragment {
 //            }
 //        });
 
-        button1.setText(getText(R.string.on) + "\n"+ getText(R.string.dieu_hoa));
-        button2.setText(getText(R.string.on) + "\n"+ getText(R.string.phun_suong));
-        button3.setText(getText(R.string.on)+ "\n"+ getText(R.string.loc_khi));
+        button1.setText(getText(R.string.on) + "\n" + getText(R.string.dieu_hoa));
+        button2.setText(getText(R.string.on) + "\n" + getText(R.string.phun_suong));
+        button3.setText(getText(R.string.on) + "\n" + getText(R.string.loc_khi));
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (state_button1) {
-                    button1.setText(getText(R.string.off)+ "\n"+ getText(R.string.dieu_hoa));
+                    button1.setText(getText(R.string.off) + "\n" + getText(R.string.dieu_hoa));
+                } else {
+                    button1.setText(getText(R.string.on) + "\n" + getText(R.string.dieu_hoa));
                 }
-                else {
-                    button1.setText(getText(R.string.on) + "\n"+ getText(R.string.dieu_hoa));
-                }
-                state_button1=!state_button1;
+                state_button1 = !state_button1;
             }
         });
 
@@ -192,12 +190,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (state_button2) {
-                    button2.setText(getText(R.string.off) + "\n"+ getText(R.string.phun_suong));
+                    button2.setText(getText(R.string.off) + "\n" + getText(R.string.phun_suong));
+                } else {
+                    button2.setText(getText(R.string.on) + "\n" + getText(R.string.phun_suong));
                 }
-                else {
-                    button2.setText(getText(R.string.on) + "\n"+ getText(R.string.phun_suong));
-                }
-                state_button2=!state_button2;
+                state_button2 = !state_button2;
             }
         });
 
@@ -205,17 +202,25 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (state_button3) {
-                    button3.setText(getText(R.string.off)+ "\n"+ getText(R.string.loc_khi));
+                    button3.setText(getText(R.string.off) + "\n" + getText(R.string.loc_khi));
+                } else {
+                    button3.setText(getText(R.string.on) + "\n" + getText(R.string.loc_khi));
                 }
-                else {
-                    button3.setText(getText(R.string.on)+ "\n"+ getText(R.string.loc_khi));
-                }
-                state_button3=!state_button3;
+                state_button3 = !state_button3;
             }
         });
 
+        String temp = (String) text1.getText();
+
+//        Float nhietdo = Float.parseFloat(text_nhietdo.getText().toString());
+
+        if ((nhietdo >= 30) && (nhietdo < 35)) {
+            text1.setText(temp + ": " + "cao");
+        }
+
         return root;
     }
+
 
 //    private float getRandomValue(){
 //        float value = new Random().nextFloat() * 7 + 35;
