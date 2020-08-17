@@ -16,4 +16,5 @@
     <string name="do_am">Độ ẩm</string>
     <string name="co">Khí CO</string>
     <string name="bui_pm_25">Bụi PM 2.5</string>
+    <string name="label_co_dinh">Đơn vị đo nhiệt độ:</string>
 </resources>
