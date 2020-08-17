@@ -1,7 +1,8 @@
 package com.haqyna.purelife.ui.home;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,12 +20,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.biansemao.widget.ThermometerView;
-import com.haqyna.purelife.MainActivity;
 import com.haqyna.purelife.R;
 
 import org.json.JSONArray;
 
-import java.util.Random;
 
 public class HomeFragment extends Fragment {
 
@@ -35,15 +31,15 @@ public class HomeFragment extends Fragment {
     private ThermometerView thermometerTv;
     Button button1, button2, button3;
     TextView text_nhietdo, text_humidity, text_CO, text_PM, text1;
-    Float nhietdo ;
-    String temp = "";
+
+    String tempNhietDo = "";
 
     boolean state_button1 = false, state_button2 = false, state_button3 = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+//        homeViewModel =
+//                ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
 
@@ -70,16 +66,21 @@ public class HomeFragment extends Fragment {
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
+                    @SuppressLint("ResourceType")
                     @Override
                     public void onResponse(JSONArray response) {
 //                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
-nhietdo=0f;
                         int l = response.toString().length();
 
-                        temp = response.toString().substring(2, l - 2);
-                        nhietdo = Float.valueOf(temp);
+                        tempNhietDo = response.toString().substring(2, l - 2);
 
-                        text_nhietdo.setText(getString(R.string.nhiet_do) + "\n" + temp + " °C");
+                        Float nhietdo = Float.parseFloat(tempNhietDo);
+
+                        if ((nhietdo >= 30f) && (nhietdo < 35f)) {
+                            text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + " cao");
+                            text1.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                        text_nhietdo.setText(getString(R.string.nhiet_do) + "\n" + tempNhietDo + " °C");
                     }
                 },
                 new Response.ErrorListener() {
@@ -99,7 +100,6 @@ nhietdo=0f;
                         int l = response.toString().length();
 
                         String temp = response.toString().substring(2, l - 2);
-
                         text_humidity.setText(getString(R.string.do_am) + "\n" + temp + " %");
                     }
                 },
@@ -210,13 +210,13 @@ nhietdo=0f;
             }
         });
 
-        String temp = (String) text1.getText();
 
-//        Float nhietdo = Float.parseFloat(text_nhietdo.getText().toString());
-
-        if ((nhietdo >= 30) && (nhietdo < 35)) {
-            text1.setText(temp + ": " + "cao");
-        }
+//
+////        Float nhietdo = Float.parseFloat(text_nhietdo.getText().toString());
+//
+//        if ((nhietdo >= 30f) && (nhietdo < 35f)) {
+//            text1.setText(temp + ": " + "cao");
+//        }
 
         return root;
     }
