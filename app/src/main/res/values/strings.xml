@@ -12,4 +12,8 @@
     <string name="loc_khi">Air purification</string>
     <string name="on">On</string>
     <string name="off">Off</string>
+    <string name="nhiet_do">Temperature</string>
+    <string name="do_am">Humidity</string>
+    <string name="co">CO</string>
+    <string name="bui_pm_25">PM 2.5</string>
 </resources>
