@@ -30,9 +30,12 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private ThermometerView thermometerTv;
     Button button1, button2, button3;
-    TextView text_nhietdo, text_humidity, text_CO, text_PM, text1;
+    TextView text_nhietdo, text_humidity, text_CO, text_PM, text1, text2, text3;
 
     String tempNhietDo = "";
+    String tempDoAm = "";
+    String tempCO= "";
+    String tempDoBuiPM25 = "";
 
     boolean state_button1 = false, state_button2 = false, state_button3 = false;
 
@@ -52,6 +55,8 @@ public class HomeFragment extends Fragment {
         text_CO = root.findViewById(R.id.text_CO);
         text_PM = root.findViewById(R.id.text_PM);
         text1 = root.findViewById(R.id.text1);
+        text2 = root.findViewById(R.id.text2);
+        text3 = root.findViewById(R.id.text3);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
 
@@ -77,7 +82,7 @@ public class HomeFragment extends Fragment {
                         Float nhietdo = Float.parseFloat(tempNhietDo);
 
                         if ((nhietdo >= 30f) && (nhietdo < 35f)) {
-                            text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + " cao");
+                            text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.tot));
                             text1.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
                         }
                         text_nhietdo.setText(getString(R.string.nhiet_do) + "\n" + tempNhietDo + " °C");
@@ -99,8 +104,8 @@ public class HomeFragment extends Fragment {
 
                         int l = response.toString().length();
 
-                        String temp = response.toString().substring(2, l - 2);
-                        text_humidity.setText(getString(R.string.do_am) + "\n" + temp + " %");
+                         tempDoAm = response.toString().substring(2, l - 2);
+                        text_humidity.setText(getString(R.string.do_am) + "\n" + tempDoAm + " %");
                     }
                 },
                 new Response.ErrorListener() {
@@ -113,15 +118,44 @@ public class HomeFragment extends Fragment {
 
         JsonArrayRequest jsonArrayRequest3 = new JsonArrayRequest(Request.Method.GET, urlPM, null,
                 new Response.Listener<JSONArray>() {
+                    @SuppressLint("ResourceType")
                     @Override
                     public void onResponse(JSONArray response) {
 //                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
 
                         int l = response.toString().length();
 
-                        String temp = response.toString().substring(2, l - 2);
-
-                        text_CO.setText(getString(R.string.co) + "\n" + temp + " PPM");
+                        tempDoBuiPM25 = response.toString().substring(2, l - 2);
+                        Float buiPM = Float.parseFloat(tempDoBuiPM25);
+                        if ((buiPM >= 0f) && (buiPM <= 15.4f)) {
+                            text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.tot));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                        if ((buiPM >= 15.5f) && (buiPM <= 40.4f)) {
+                            text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.vua_phai));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                        if ((buiPM >= 40.5f) && (buiPM <= 65.4f)) {
+                            text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.khong_lanh_manh));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                        if ((buiPM >= 65.5f) && (buiPM <= 150.4f)) {
+                            text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.khong_khoe));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                        if ((buiPM >= 150.5f) && (buiPM <= 250.4f)) {
+                            text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.rat_khong_khoe));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                        if ((buiPM >= 250.5f) && (buiPM <= 350.4f)) {
+                            text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.nguy_hiem));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                        if ((buiPM >= 350.5f) && (buiPM <= 500.4f)) {
+                            text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.rat_nguy_hiem));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                        text_PM.setText(getString(R.string.bui_pm_25) + "\n" + tempDoBuiPM25 + "\n (µg/m3)");
                     }
                 },
                 new Response.ErrorListener() {
@@ -134,15 +168,40 @@ public class HomeFragment extends Fragment {
 
         JsonArrayRequest jsonArrayRequest4 = new JsonArrayRequest(Request.Method.GET, urlCO, null,
                 new Response.Listener<JSONArray>() {
+                    @SuppressLint("ResourceType")
                     @Override
                     public void onResponse(JSONArray response) {
 //                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
 
                         int l = response.toString().length();
 
-                        String temp = response.toString().substring(2, l - 2);
-
-                        text_PM.setText(getString(R.string.bui_pm_25) + "\n" + temp + "\n (µg/m3)");
+                         tempCO = response.toString().substring(2, l - 2);
+                        Float CO = Float.parseFloat(tempCO);
+                        if ((CO >=0f) && (CO <= 50f)) {
+                            text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.tot));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                        if ((CO >= 51f) && (CO <= 100f)) {
+                            text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.vua_phai));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                        if ((CO >= 101f) && (CO <= 150f)) {
+                            text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.khong_lanh_manh));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                         if ((CO >= 151f) && (CO <= 200f)) {
+                            text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.khong_khoe));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                       if ((CO >= 201f) && (CO <= 300f)) {
+                            text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.rat_khong_khoe));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
+                       if ((CO >= 301f) && (CO <= 500f)) {
+                           text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.nguy_hiem));
+                           text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                       }
+                        text_CO.setText(getString(R.string.co) + "\n" + tempCO + " PPM");
                     }
                 },
                 new Response.ErrorListener() {
@@ -211,12 +270,6 @@ public class HomeFragment extends Fragment {
         });
 
 
-//
-////        Float nhietdo = Float.parseFloat(text_nhietdo.getText().toString());
-//
-//        if ((nhietdo >= 30f) && (nhietdo < 35f)) {
-//            text1.setText(temp + ": " + "cao");
-//        }
 
         return root;
     }

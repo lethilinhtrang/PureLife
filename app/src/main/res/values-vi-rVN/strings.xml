@@ -17,4 +17,11 @@
     <string name="co">Khí CO</string>
     <string name="bui_pm_25">Bụi PM 2.5</string>
     <string name="label_co_dinh">Đơn vị đo nhiệt độ:</string>
+    <string name="vua_phai">" vừa phải"</string>
+    <string name="tot">" tốt"</string>
+    <string name="khong_lanh_manh">" không lành mạnh(nhóm nhạy cảm)"</string>
+    <string name="rat_khong_khoe">" rất không khỏe"</string>
+    <string name="nguy_hiem">" nguy hiểm"</string>
+    <string name="khong_khoe">" không khỏe"</string>
+    <string name="rat_nguy_hiem">" rất nguy hiểm"</string>
 </resources>

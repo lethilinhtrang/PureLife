@@ -17,4 +17,11 @@
     <string name="co">CO</string>
     <string name="bui_pm_25">PM 2.5</string>
     <string name="label_co_dinh">Measure_Temperature:</string>
+    <string name="tot">" good"</string>
+    <string name="vua_phai">" medium"</string>
+    <string name="khong_lanh_manh">" unhealthy"</string>
+    <string name="rat_khong_khoe">" very unwell"</string>
+    <string name="nguy_hiem">" danger"</string>
+    <string name="khong_khoe">" unhealthy"</string>
+    <string name="rat_nguy_hiem">" very danger"</string>
 </resources>

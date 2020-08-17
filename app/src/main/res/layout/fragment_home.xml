@@ -124,7 +124,7 @@
                     android:gravity="left"
                     android:background="#ffffff"
                 android:text="@string/canh_bao_nhiet_do_do_am"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
                 <TextView
                     android:paddingLeft="5dp"
                     android:id="@+id/text2"
@@ -137,7 +137,7 @@
                     android:gravity="left"
                     android:background="#ffffff"
                     android:text="@string/canh_bao_khi_co"
-                    android:textSize="15sp" />
+                    android:textSize="12sp" />
                 <TextView
                     android:paddingLeft="5dp"
                     android:id="@+id/text3"
@@ -150,7 +150,7 @@
                     android:gravity="left"
                     android:background="#ffffff"
                     android:text="@string/canh_bao_bui_PM2.5"
-                    android:textSize="15sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
