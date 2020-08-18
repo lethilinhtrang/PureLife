@@ -30,14 +30,29 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private ThermometerView thermometerTv;
     Button button1, button2, button3;
-    TextView text_nhietdo, text_humidity, text_CO, text_PM, text1, text2, text3;
+    static TextView text_nhietdo;
+    static TextView text_nhietdo_f;
+    TextView text_humidity;
+    TextView text_CO;
+    TextView text_PM;
+    TextView text1;
+    TextView text2;
+    TextView text3;
 
     String tempNhietDo = "";
     String tempDoAm = "";
-    String tempCO= "";
+    String tempCO = "";
     String tempDoBuiPM25 = "";
 
     boolean state_button1 = false, state_button2 = false, state_button3 = false;
+
+    RequestQueue requestQueue;
+
+    String urlDoC = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V5";
+    String urlDoAm = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V6";
+    String urlPM = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V7";
+    String urlCO = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V8";
+    String urlDoF = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V9";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +66,7 @@ public class HomeFragment extends Fragment {
         button3 = root.findViewById(R.id.button3);
 
         text_nhietdo = root.findViewById(R.id.text_nhietdo);
+        text_nhietdo_f = root.findViewById(R.id.text_nhietdo_f);
         text_humidity = root.findViewById(R.id.text_humidity);
         text_CO = root.findViewById(R.id.text_CO);
         text_PM = root.findViewById(R.id.text_PM);
@@ -58,18 +74,15 @@ public class HomeFragment extends Fragment {
         text2 = root.findViewById(R.id.text2);
         text3 = root.findViewById(R.id.text3);
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue = Volley.newRequestQueue(getContext());
 
 //        hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq
 //        11:52
 //        oIXHj_zEa_p1GFQcQ12r34VRYRaORok7
 
-        String url = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V5";
-        String urlDoAm = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V6";
-        String urlPM = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V7";
-        String urlCO = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V8";
+//        layNhietDo("C");
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlDoC, null,
                 new Response.Listener<JSONArray>() {
                     @SuppressLint("ResourceType")
                     @Override
@@ -96,6 +109,33 @@ public class HomeFragment extends Fragment {
                 });
         requestQueue.add(jsonArrayRequest);
 
+        JsonArrayRequest jsonArrayRequestf = new JsonArrayRequest(Request.Method.GET, urlDoF, null,
+                new Response.Listener<JSONArray>() {
+                    @SuppressLint("ResourceType")
+                    @Override
+                    public void onResponse(JSONArray response) {
+//                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                        int l = response.toString().length();
+
+                        tempNhietDo = response.toString().substring(2, l - 2);
+
+//                        Float nhietdo = Float.parseFloat(tempNhietDo);
+
+//                        if ((nhietdo >= 15f) && (nhietdo < 35f)) {
+//                            text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.tot));
+//                            text1.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+//                        }
+                        text_nhietdo_f.setText(getString(R.string.nhiet_do) + "\n" + tempNhietDo + " °F");
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+        requestQueue.add(jsonArrayRequestf);
+
         JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.GET, urlDoAm, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -104,7 +144,7 @@ public class HomeFragment extends Fragment {
 
                         int l = response.toString().length();
 
-                         tempDoAm = response.toString().substring(2, l - 2);
+                        tempDoAm = response.toString().substring(2, l - 2);
                         text_humidity.setText(getString(R.string.do_am) + "\n" + tempDoAm + " %");
                     }
                 },
@@ -175,9 +215,9 @@ public class HomeFragment extends Fragment {
 
                         int l = response.toString().length();
 
-                         tempCO = response.toString().substring(2, l - 2);
+                        tempCO = response.toString().substring(2, l - 2);
                         Float CO = Float.parseFloat(tempCO);
-                        if ((CO >=0f) && (CO <= 50f)) {
+                        if ((CO >= 0f) && (CO <= 50f)) {
                             text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.tot));
                             text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
                         }
@@ -189,18 +229,18 @@ public class HomeFragment extends Fragment {
                             text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.khong_lanh_manh));
                             text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
                         }
-                         if ((CO >= 151f) && (CO <= 200f)) {
+                        if ((CO >= 151f) && (CO <= 200f)) {
                             text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.khong_khoe));
                             text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
                         }
-                       if ((CO >= 201f) && (CO <= 300f)) {
+                        if ((CO >= 201f) && (CO <= 300f)) {
                             text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.rat_khong_khoe));
                             text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
                         }
-                       if ((CO >= 301f) && (CO <= 500f)) {
-                           text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.nguy_hiem));
-                           text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
-                       }
+                        if ((CO >= 301f) && (CO <= 500f)) {
+                            text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.nguy_hiem));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                        }
                         text_CO.setText(getString(R.string.co) + "\n" + tempCO + " PPM");
                     }
                 },
@@ -269,13 +309,91 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-
         return root;
     }
 
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        switch (id) {
+//            case R.id.item1:
+////                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
+////                startActivityForResult(new Intent(getContext(), SettingActivity.class, REQUEST_CODE));
+//                startActivityForResult(new Intent(getContext(), SettingActivity.class), REQUEST_CODE);
+//
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
-//    private float getRandomValue(){
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
+
+
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+////        super.onCreateOptionsMenu(menu, inflater);
+//        getActivity().getMenuInflater().inflate(R.menu.menu_main, menu);
+//    }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        switch (id) {
+//            case R.id.item1:
+////                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
+////                startActivityForResult(new Intent(getContext(), SettingActivity.class, REQUEST_CODE));
+//                startActivityForResult(new Intent(getContext() , SettingActivity.class), REQUEST_CODE);
+//
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+
+    public static void chuyenNhietDo(String kieuDo) {
+        if ("C".equals(kieuDo)) {
+            text_nhietdo_f.setVisibility(View.GONE);
+            text_nhietdo.setVisibility(View.VISIBLE);
+        } else {
+            text_nhietdo_f.setVisibility(View.VISIBLE);
+            text_nhietdo.setVisibility(View.GONE);
+        }
+
+//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+//                new Response.Listener<JSONArray>() {
+//                    @SuppressLint("ResourceType")
+//                    @Override
+//                    public void onResponse(JSONArray response) {
+////                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+//                        int l = response.toString().length();
+//
+//                        tempNhietDo = response.toString().substring(2, l - 2);
+//
+//                        Float nhietdo = Float.parseFloat(tempNhietDo);
+//
+//                        if ((nhietdo >= 15f) && (nhietdo < 35f)) {
+//                            text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.tot));
+//                            text1.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+//                        }
+//                        text_nhietdo.setText(getString(R.string.nhiet_do) + "\n" + tempNhietDo + " °C");
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//        requestQueue.add(jsonArrayRequest);
+    }
+
+    //    private float getRandomValue(){
 //        float value = new Random().nextFloat() * 7 + 35;
 //        Log.i("MainActivity", "current value: " + value);
 //        return value;

@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.haqyna.purelife.ui.home.HomeFragment;
 
 import org.json.JSONArray;
 
@@ -23,6 +24,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
+
+    int REQUEST_CODE = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,18 +68,41 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        switch (id){
+//            case R.id.item1:
+////                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
+//                startActivity(new Intent(MainActivity.this, SettingActivity.class));
+//
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case R.id.item1:
 //                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(MainActivity.this, SettingActivity.class));
+//                startActivityForResult(new Intent(getContext(), SettingActivity.class, REQUEST_CODE));
+                startActivityForResult(new Intent(MainActivity.this , SettingActivity.class), REQUEST_CODE);
 
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE && data != null) {
+            HomeFragment.chuyenNhietDo(data.getStringExtra("kieuDo"));
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }
