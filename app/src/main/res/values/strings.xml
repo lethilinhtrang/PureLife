@@ -4,7 +4,7 @@
     <string name="title_dashboard">Bed Room 1</string>
     <string name="title_notifications">Bed Room 2</string>
     <string name="error">Error</string>
-    <string name="canh_bao_nhiet_do_do_am">temperature, humidity:</string>
+    <string name="canh_bao_nhiet_do_do_am">Humidity:</string>
     <string name="canh_bao_khi_co">CO:</string>
     <string name="canh_bao_bui_PM2.5">PM 2.5:</string>
     <string name="dieu_hoa">cold machine</string>
@@ -16,12 +16,14 @@
     <string name="do_am">Humidity</string>
     <string name="co">CO</string>
     <string name="bui_pm_25">PM 2.5</string>
-    <string name="label_co_dinh">Measure_Temperature:</string>
+    <string name="label_co_dinh">Show measure temperature:</string>
     <string name="tot">" good"</string>
     <string name="vua_phai">" medium"</string>
-    <string name="khong_lanh_manh">" unhealthy"</string>
+    <string name="khong_lanh_manh">" unhealthy1"</string>
     <string name="rat_khong_khoe">" very unwell"</string>
     <string name="nguy_hiem">" danger"</string>
-    <string name="khong_khoe">" unhealthy"</string>
+    <string name="khong_khoe">" unhealthy2"</string>
     <string name="rat_nguy_hiem">" very danger"</string>
+    <string name="do_am_cao">" high"</string>
+    <string name="do_am_thap">" low"</string>
 </resources>

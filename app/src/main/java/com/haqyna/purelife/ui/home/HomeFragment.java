@@ -89,15 +89,7 @@ public class HomeFragment extends Fragment {
                     public void onResponse(JSONArray response) {
 //                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
                         int l = response.toString().length();
-
                         tempNhietDo = response.toString().substring(2, l - 2);
-
-                        Float nhietdo = Float.parseFloat(tempNhietDo);
-
-                        if ((nhietdo >= 15f) && (nhietdo < 35f)) {
-                            text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.tot));
-                            text1.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
-                        }
                         text_nhietdo.setText(getString(R.string.nhiet_do) + "\n" + tempNhietDo + " °C");
                     }
                 },
@@ -118,13 +110,6 @@ public class HomeFragment extends Fragment {
                         int l = response.toString().length();
 
                         tempNhietDo = response.toString().substring(2, l - 2);
-
-//                        Float nhietdo = Float.parseFloat(tempNhietDo);
-
-//                        if ((nhietdo >= 15f) && (nhietdo < 35f)) {
-//                            text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.tot));
-//                            text1.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
-//                        }
                         text_nhietdo_f.setText(getString(R.string.nhiet_do) + "\n" + tempNhietDo + " °F");
                     }
                 },
@@ -138,6 +123,7 @@ public class HomeFragment extends Fragment {
 
         JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.GET, urlDoAm, null,
                 new Response.Listener<JSONArray>() {
+                    @SuppressLint("ResourceType")
                     @Override
                     public void onResponse(JSONArray response) {
 //                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
@@ -145,6 +131,20 @@ public class HomeFragment extends Fragment {
                         int l = response.toString().length();
 
                         tempDoAm = response.toString().substring(2, l - 2);
+                        Float doAm = Float.parseFloat(tempDoAm);
+
+                        if ((doAm >= 60f) && (doAm < 75f)) {
+                            text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.tot));
+                            text1.setTextColor(Color.parseColor((String) getText(R.color.colorTrungBinh)));
+                        }
+                        if (doAm < 60f) {
+                            text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.do_am_thap));
+                            text1.setTextColor(Color.parseColor((String) getText(R.color.colorKhongLanhManh)));
+                        }
+                        if (doAm >= 75f) {
+                            text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.do_am_cao));
+                            text1.setTextColor(Color.parseColor((String) getText(R.color.colorKhongLanhManh)));
+                        }
                         text_humidity.setText(getString(R.string.do_am) + "\n" + tempDoAm + " %");
                     }
                 },
@@ -169,31 +169,31 @@ public class HomeFragment extends Fragment {
                         Float buiPM = Float.parseFloat(tempDoBuiPM25);
                         if ((buiPM >= 0f) && (buiPM <= 15.4f)) {
                             text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.tot));
-                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorTot)));
                         }
                         if ((buiPM >= 15.5f) && (buiPM <= 40.4f)) {
                             text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.vua_phai));
-                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorTrungBinh)));
                         }
                         if ((buiPM >= 40.5f) && (buiPM <= 65.4f)) {
                             text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.khong_lanh_manh));
-                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorKhongLanhManh)));
                         }
                         if ((buiPM >= 65.5f) && (buiPM <= 150.4f)) {
                             text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.khong_khoe));
-                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorKhongKhoe)));
                         }
                         if ((buiPM >= 150.5f) && (buiPM <= 250.4f)) {
                             text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.rat_khong_khoe));
-                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorRatKhongKhoe)));
                         }
                         if ((buiPM >= 250.5f) && (buiPM <= 350.4f)) {
                             text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.nguy_hiem));
-                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorNguyHiem)));
                         }
                         if ((buiPM >= 350.5f) && (buiPM <= 500.4f)) {
                             text3.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.rat_nguy_hiem));
-                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text3.setTextColor(Color.parseColor((String) getText(R.color.colorRatNguyHiem)));
                         }
                         text_PM.setText(getString(R.string.bui_pm_25) + "\n" + tempDoBuiPM25 + "\n (µg/m3)");
                     }
@@ -219,27 +219,27 @@ public class HomeFragment extends Fragment {
                         Float CO = Float.parseFloat(tempCO);
                         if ((CO >= 0f) && (CO <= 50f)) {
                             text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.tot));
-                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorTot)));
                         }
                         if ((CO >= 51f) && (CO <= 100f)) {
                             text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.vua_phai));
-                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorTrungBinh)));
                         }
                         if ((CO >= 101f) && (CO <= 150f)) {
                             text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.khong_lanh_manh));
-                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorKhongLanhManh)));
                         }
                         if ((CO >= 151f) && (CO <= 200f)) {
                             text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.khong_khoe));
-                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorKhongKhoe)));
                         }
                         if ((CO >= 201f) && (CO <= 300f)) {
                             text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.rat_khong_khoe));
-                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorRatKhongKhoe)));
                         }
                         if ((CO >= 301f) && (CO <= 500f)) {
                             text2.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.nguy_hiem));
-                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorOrange)));
+                            text2.setTextColor(Color.parseColor((String) getText(R.color.colorNguyHiem)));
                         }
                         text_CO.setText(getString(R.string.co) + "\n" + tempCO + " PPM");
                     }

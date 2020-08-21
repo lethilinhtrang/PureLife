@@ -2,7 +2,14 @@
 <resources>
     <color name="colorPrimary">#00CED1</color>
     <color name="colorPrimaryDark">#B0E0E6</color>
-    <color name="colorAccent">#ff5131</color>
+    <color name="colorAccent">#B0E0E6</color>
 
-    <color name="colorOrange">#fb8c00</color>
+    <color name="colorTot">#006400</color>
+    <color name="colorTrungBinh">#00CD00</color>
+    <color name="colorKhongLanhManh">#FFFF00</color>
+    <color name="colorKhongKhoe">#FFC125</color>
+    <color name="colorRatKhongKhoe">#FF8247</color>
+    <color name="colorNguyHiem">#FF3030</color>
+    <color name="colorRatNguyHiem">#8B4726</color>
+
 </resources>
