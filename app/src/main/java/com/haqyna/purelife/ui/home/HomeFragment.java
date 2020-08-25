@@ -1,29 +1,20 @@
 package com.haqyna.purelife.ui.home;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.biansemao.widget.ThermometerView;
-import com.haqyna.purelife.GetDataFrom3rdParty;
+import com.haqyna.purelife.GetDoC;
 import com.haqyna.purelife.R;
-
-import org.json.JSONArray;
 
 public class HomeFragment extends Fragment {
 
@@ -76,7 +67,7 @@ public class HomeFragment extends Fragment {
 
         requestQueue = Volley.newRequestQueue(getContext());
 
-        new GetDataFrom3rdParty(getContext(), text_nhietdo).execute(urlDoC);
+        new GetDoC(getContext(), text_nhietdo).execute(urlDoC);
 
 //        hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq
 //        11:52

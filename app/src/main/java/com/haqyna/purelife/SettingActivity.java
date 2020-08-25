@@ -39,6 +39,5 @@ public class SettingActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }
