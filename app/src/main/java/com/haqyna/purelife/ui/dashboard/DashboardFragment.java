@@ -131,7 +131,14 @@ public class DashboardFragment extends Fragment {
                         int l = response.toString().length();
 
                         tempDoAm = response.toString().substring(2, l - 2);
-                        Float doAm = Float.parseFloat(tempDoAm);
+                        Float doAm=0f;
+                        try{
+                            doAm = Float.parseFloat(tempDoAm);
+                        }
+                        catch (Exception E){
+                            doAm=70f;
+                        }
+
 
                         if ((doAm >= 60f) && (doAm < 75f)) {
                             text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.tot));

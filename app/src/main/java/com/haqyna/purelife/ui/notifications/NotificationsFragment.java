@@ -48,11 +48,11 @@ public class NotificationsFragment extends Fragment {
 
     RequestQueue requestQueue;
 
-    String urlDoC = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V5";
-    String urlDoAm = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V6";
-    String urlPM = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V7";
-    String urlCO = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V8";
-    String urlDoF = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V9";
+    String urlDoC = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V5";
+    String urlDoAm = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V6";
+    String urlPM = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V7";
+    String urlCO = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V8";
+    String urlDoF = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V9";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -130,7 +130,14 @@ public class NotificationsFragment extends Fragment {
                         int l = response.toString().length();
 
                         tempDoAm = response.toString().substring(2, l - 2);
-                        Float doAm = Float.parseFloat(tempDoAm);
+                        Float doAm=0f;
+                        try{
+                            doAm = Float.parseFloat(tempDoAm);
+                        }
+                        catch (Exception E){
+                            doAm=70f;
+                        }
+
 
                         if ((doAm >= 60f) && (doAm < 75f)) {
                             text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.tot));

@@ -131,7 +131,15 @@ public class HomeFragment extends Fragment {
                         int l = response.toString().length();
 
                         tempDoAm = response.toString().substring(2, l - 2);
-                        Float doAm = Float.parseFloat(tempDoAm);
+                        Float doAm=0f;
+                        try{
+                            doAm = Float.parseFloat(tempDoAm);
+                            text_humidity.setText(getString(R.string.do_am) + "\n" + tempDoAm + " %");
+                        }
+                        catch (Exception E){
+                            doAm=70f;
+                            text_humidity.setText(getString(R.string.do_am) + "\n" + 70 + " %");
+                        }
 
                         if ((doAm >= 60f) && (doAm < 75f)) {
                             text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.tot));
@@ -145,7 +153,8 @@ public class HomeFragment extends Fragment {
                             text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.do_am_cao));
                             text1.setTextColor(Color.parseColor((String) getText(R.color.colorKhongLanhManh)));
                         }
-                        text_humidity.setText(getString(R.string.do_am) + "\n" + tempDoAm + " %");
+
+
                     }
                 },
                 new Response.ErrorListener() {
