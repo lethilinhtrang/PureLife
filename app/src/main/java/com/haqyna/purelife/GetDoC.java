@@ -69,9 +69,14 @@ public class GetDoC extends AsyncTask<String, Void, String> {
         // Hủy dialog đi.
         progressDialog.dismiss();
 
-        int l = aString.length();
-        tempNhietDo = aString.substring(2, l - 2);
+        try {
+            int l = aString.length();
+            tempNhietDo = aString.substring(2, l - 3);
+        } catch (Exception ex) {
+            tempNhietDo = "30";
+        }
 
-        text_nhietdo.setText("Nhiệt độ" + "\n" + aString + " °C");
+
+        text_nhietdo.setText("Nhiệt độ" + "\n" + tempNhietDo + " °C");
     }
 }
