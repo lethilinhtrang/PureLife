@@ -5,15 +5,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Random;
 
 
@@ -43,32 +44,63 @@ public class GetData extends AsyncTask<String, Void, String> {
         progressDialog.show();
     }
 
+//    @Override
+//    protected String doInBackground(String... strings) {
+//        try {
+//            StringBuilder sb;
+//            // Website này sẽ cho biết địa chỉ IP của bạn.
+//            URL url = new URL(strings[0]);
+//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+//                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+//                sb = new StringBuilder();
+//                String line;
+//                while ((line = br.readLine()) != null) {
+//                    sb.append(line).append("\n");
+//                }
+//
+////                Log.e("Dia chi IP ", sb.toString());
+//                br.close();
+//                return sb.toString();
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//
+//        return null;
+//    }
+
     @Override
     protected String doInBackground(String... strings) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
         try {
-            StringBuilder sb;
-            // Website này sẽ cho biết địa chỉ IP của bạn.
             URL url = new URL(strings[0]);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                sb = new StringBuilder();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    sb.append(line).append("\n");
-                }
 
-//                Log.e("Dia chi IP ", sb.toString());
-                br.close();
-                return sb.toString();
+            URLConnection urlconnection = url.openConnection();
+
+            InputStream inputStream = urlconnection.getInputStream();
+
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line + "\n");
             }
+            bufferedReader.close();
 
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
-
-        return null;
+        return stringBuilder.toString();
     }
 
     @SuppressLint("ResourceType")
@@ -90,17 +122,17 @@ public class GetData extends AsyncTask<String, Void, String> {
                 textView.setText(context.getString(R.string.nhiet_do) + "\n" + tempDuLieu + " °C");
                 break;
             case 1:
-                textView.setText("Nhiệt độ: " + "\n" + tempDuLieu + " °F");
+                textView.setText(context.getString(R.string.nhiet_do) + "\n" + tempDuLieu + " °F");
                 break;
             case 2:
 //                textView.setText("Độ ẩm: " + "\n" + tempDuLieu + " %");
                 Float doAm = 0f;
                 try {
                     doAm = Float.parseFloat(tempDuLieu);
-                    textView.setText("Độ ẩm: " + "\n" + tempDuLieu + " %");
+                    textView.setText(context.getString(R.string.do_am) + "\n" + tempDuLieu + " %");
                 } catch (Exception E) {
                     doAm = 70f;
-                    textView.setText("Độ ẩm: " + "\n" + 70 + " %");
+                    textView.setText(context.getString(R.string.do_am) + "\n" + 70 + " %");
                 }
 
                 if ((doAm >= 60f) && (doAm < 75f)) {
