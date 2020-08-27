@@ -1,5 +1,6 @@
 package com.haqyna.purelife;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -70,6 +71,7 @@ public class GetData extends AsyncTask<String, Void, String> {
         return null;
     }
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onPostExecute(String aString) {
         super.onPostExecute(aString);
@@ -85,7 +87,7 @@ public class GetData extends AsyncTask<String, Void, String> {
 
         switch (loai) {
             case 0:
-                textView.setText("Nhiệt độ: " + "\n" + tempDuLieu + " °C");
+                textView.setText(context.getString(R.string.nhiet_do) + "\n" + tempDuLieu + " °C");
                 break;
             case 1:
                 textView.setText("Nhiệt độ: " + "\n" + tempDuLieu + " °F");
@@ -102,92 +104,92 @@ public class GetData extends AsyncTask<String, Void, String> {
                 }
 
                 if ((doAm >= 60f) && (doAm < 75f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.tot));
-                    textCanhBao.setText("Độ ẩm: Tốt");
-//                    text1.setTextColor(Color.parseColor((String) getText(R.color.colorTrungBinh)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_nhiet_do_do_am) + context.getText(R.string.tot));
+//                    textCanhBao.setText("Độ ẩm: Tốt");
+                    textCanhBao.setTextColor(Color.parseColor(context.getString(R.color.colorTot)));
                 }
                 if (doAm < 60f) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.do_am_thap));
-                    textCanhBao.setText("Độ ẩm: Thâp");
-//                    text1.setTextColor(Color.parseColor((String) getText(R.color.colorKhongLanhManh)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_nhiet_do_do_am) + context.getText(R.string.do_am_thap));
+//                    textCanhBao.setText("Độ ẩm: Thâp");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorKhongLanhManh)));
                 }
                 if (doAm >= 75f) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.do_am_cao));
-                    textCanhBao.setText("Độ ẩm: Cao");
-//                    text1.setTextColor(Color.parseColor((String) getText(R.color.colorKhongLanhManh)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_nhiet_do_do_am) + context.getText(R.string.do_am_cao));
+//                    textCanhBao.setText("Độ ẩm: Cao");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorKhongLanhManh)));
                 }
                 break;
             case 3:
-                textView.setText("Khí CO: " + "\n" + tempDuLieu + " (µg/m3)");
+                textView.setText(context.getString(R.string.canh_bao_khi_co) + "\n" + tempDuLieu + " (µg/m3)");
                 Float CO = Float.parseFloat(tempDuLieu);
                 if ((CO >= 0f) && (CO <= 50f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.tot));
-                    textCanhBao.setText("Khí CO: tốt");
-//                    textCanhBao.setTextColor(Color.parseColor((String) getText(R.color.colorTot)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_khi_co) + context.getText(R.string.tot));
+//                    textCanhBao.setText("Khí CO: tốt");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorTot)));
                 }
                 if ((CO >= 51f) && (CO <= 100f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.vua_phai));
-                    textCanhBao.setText("Khí CO: vừa phải");
-//                    textCanhBao.setTextColor(Color.parseColor((String) getText(R.color.colorTrungBinh)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_khi_co) + context.getText(R.string.vua_phai));
+//                    textCanhBao.setText("Khí CO: vừa phải");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorTrungBinh)));
                 }
                 if ((CO >= 101f) && (CO <= 150f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.khong_lanh_manh));
-                    textCanhBao.setText("Khí CO: không lành mạnh");
-//                    textCanhBao.setTextColor(Color.parseColor((String) getText(R.color.colorKhongLanhManh)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_khi_co) + context.getText(R.string.khong_lanh_manh));
+//                    textCanhBao.setText("Khí CO: không lành mạnh");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorKhongLanhManh)));
                 }
                 if ((CO >= 151f) && (CO <= 200f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.khong_khoe));
-                    textCanhBao.setText("Khí CO: không khỏe");
-//                    textCanhBao.setTextColor(Color.parseColor((String) getText(R.color.colorKhongKhoe)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_khi_co) + context.getText(R.string.khong_khoe));
+//                    textCanhBao.setText("Khí CO: không khỏe");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorKhongKhoe)));
                 }
                 if ((CO >= 201f) && (CO <= 300f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.rat_khong_khoe));
-                    textCanhBao.setText("Khí CO: rất không khỏe");
-//                    textCanhBao.setTextColor(Color.parseColor((String) getText(R.color.colorRatKhongKhoe)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_khi_co) + context.getText(R.string.rat_khong_khoe));
+//                    textCanhBao.setText("Khí CO: rất không khỏe");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorRatKhongKhoe)));
                 }
                 if ((CO >= 301f) && (CO <= 500f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_khi_co) + getText(R.string.nguy_hiem));
-                    textCanhBao.setText("Khí CO: nguy hiểm");
-//                    textCanhBao.setTextColor(Color.parseColor((String) getText(R.color.colorNguyHiem)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_khi_co) + context.getText(R.string.nguy_hiem));
+//                    textCanhBao.setText("Khí CO: nguy hiểm");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorNguyHiem)));
                 }
                 break;
             case 4:
                 textView.setText("Bụi PM 2.5 " + "\n" + tempDuLieu + " PPM");
                 Float buiPM = Float.parseFloat(tempDuLieu);
                 if ((buiPM >= 0f) && (buiPM <= 15.4f)) {
-//                    textCanhBao.setText("Bụi PM 2.5: " + getText(R.string.tot));
-                    textCanhBao.setText("Bụi PM 2.5: tốt");
-//                    text3.setTextColor(Color.parseColor((String) getText(R.color.colorTot)));
+                    textCanhBao.setText("Bụi PM 2.5: " + context.getText(R.string.tot));
+//                    textCanhBao.setText("Bụi PM 2.5: tốt");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorTot)));
                 }
                 if ((buiPM >= 15.5f) && (buiPM <= 40.4f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.vua_phai));
-                    textCanhBao.setText("Bụi PM 2.5: vừa phải");
-//                    text3.setTextColor(Color.parseColor((String) getText(R.color.colorTrungBinh)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_bui_PM2_5) + context.getText(R.string.vua_phai));
+//                    textCanhBao.setText("Bụi PM 2.5: vừa phải");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorTrungBinh)));
                 }
                 if ((buiPM >= 40.5f) && (buiPM <= 65.4f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.khong_lanh_manh));
-                    textCanhBao.setText("Bụi PM 2.5: không lành mạnh");
-//                    text3.setTextColor(Color.parseColor((String) getText(R.color.colorKhongLanhManh)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_bui_PM2_5) + context.getText(R.string.khong_lanh_manh));
+//                    textCanhBao.setText("Bụi PM 2.5: không lành mạnh");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorKhongLanhManh)));
                 }
                 if ((buiPM >= 65.5f) && (buiPM <= 150.4f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.khong_khoe));
-                    textCanhBao.setText("Bụi PM 2.5: không khỏe");
-//                    text3.setTextColor(Color.parseColor((String) getText(R.color.colorKhongKhoe)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_bui_PM2_5) + context.getText(R.string.khong_khoe));
+//                    textCanhBao.setText("Bụi PM 2.5: không khỏe");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorKhongKhoe)));
                 }
                 if ((buiPM >= 150.5f) && (buiPM <= 250.4f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.rat_khong_khoe));
-                    textCanhBao.setText("Bụi PM 2.5: rất không khỏe");
-//                    text3.setTextColor(Color.parseColor((String) getText(R.color.colorRatKhongKhoe)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_bui_PM2_5) + context.getText(R.string.rat_khong_khoe));
+//                    textCanhBao.setText("Bụi PM 2.5: rất không khỏe");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorRatKhongKhoe)));
                 }
                 if ((buiPM >= 250.5f) && (buiPM <= 350.4f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.nguy_hiem));
-                    textCanhBao.setText("Bụi PM 2.5: nguy hiểm");
-//                    text3.setTextColor(Color.parseColor((String) getText(R.color.colorNguyHiem)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_bui_PM2_5) + context.getText(R.string.nguy_hiem));
+//                    textCanhBao.setText("Bụi PM 2.5: nguy hiểm");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorNguyHiem)));
                 }
                 if ((buiPM >= 350.5f) && (buiPM <= 500.4f)) {
-//                    textCanhBao.setText(getString(R.string.canh_bao_bui_PM2_5) + getText(R.string.rat_nguy_hiem));
-                    textCanhBao.setText("Bụi PM 2.5: rất nguy hiểm");
-//                    text3.setTextColor(Color.parseColor((String) getText(R.color.colorRatNguyHiem)));
+                    textCanhBao.setText(context.getString(R.string.canh_bao_bui_PM2_5) + context.getText(R.string.rat_nguy_hiem));
+//                    textCanhBao.setText("Bụi PM 2.5: rất nguy hiểm");
+                    textCanhBao.setTextColor(Color.parseColor((String) context.getText(R.color.colorRatNguyHiem)));
                 }
                 break;
             default:
