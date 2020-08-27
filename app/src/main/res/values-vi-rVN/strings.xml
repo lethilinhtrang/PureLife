@@ -26,4 +26,5 @@
     <string name="rat_nguy_hiem">" rất nguy hiểm"</string>
     <string name="do_am_cao">" cao"</string>
     <string name="do_am_thap">"  thấp(khô)"</string>
+    <string name="du_lieu">Đang lấy dữ liệu...</string>
 </resources>

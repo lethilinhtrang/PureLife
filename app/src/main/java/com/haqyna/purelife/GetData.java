@@ -39,7 +39,7 @@ public class GetData extends AsyncTask<String, Void, String> {
         // Hiển thị Dialog khi bắt đầu xử lý.
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Pure Life");
-        progressDialog.setMessage("Đang lấy dữ liệu...");
+        progressDialog.setMessage(context.getString(R.string.du_lieu));
         progressDialog.show();
     }
 

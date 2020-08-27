@@ -26,4 +26,5 @@
     <string name="rat_nguy_hiem">" very danger"</string>
     <string name="do_am_cao">" high"</string>
     <string name="do_am_thap">" low"</string>
+    <string name="du_lieu">Loading...</string>
 </resources>
