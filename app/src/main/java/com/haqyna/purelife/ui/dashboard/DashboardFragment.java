@@ -1,28 +1,29 @@
 package com.haqyna.purelife.ui.dashboard;
 
-        import android.annotation.SuppressLint;
-        import android.graphics.Color;
-        import android.os.Bundle;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import androidx.annotation.NonNull;
-        import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
-        import com.android.volley.Request;
-        import com.android.volley.RequestQueue;
-        import com.android.volley.Response;
-        import com.android.volley.VolleyError;
-        import com.android.volley.toolbox.JsonArrayRequest;
-        import com.android.volley.toolbox.Volley;
-        import com.biansemao.widget.ThermometerView;
-        import com.haqyna.purelife.R;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.biansemao.widget.ThermometerView;
+import com.haqyna.purelife.GetData;
+import com.haqyna.purelife.R;
 
-        import org.json.JSONArray;
+import org.json.JSONArray;
 
 
 public class DashboardFragment extends Fragment {
@@ -48,11 +49,11 @@ public class DashboardFragment extends Fragment {
 
     RequestQueue requestQueue;
 
-    String urlDoC = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V5";
-    String urlDoAm = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V6";
-    String urlPM = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V7";
-    String urlCO = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V8";
-    String urlDoF = "http://188.166.206.43/CAPTHutAcs8rLDgwQ0RU3KjYmnvMo1EM/get/V9";
+    String urlDoC = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V5";
+    String urlDoAm = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V6";
+    String urlPM = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V7";
+    String urlCO = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V8";
+    String urlDoF = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V9";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -74,7 +75,13 @@ public class DashboardFragment extends Fragment {
         text2 = root.findViewById(R.id.text2);
         text3 = root.findViewById(R.id.text3);
 
-        requestQueue = Volley.newRequestQueue(getContext());
+//        requestQueue = Volley.newRequestQueue(getContext());
+
+        new GetData(getContext(), text_nhietdo, null,0).execute(urlDoC);
+        new GetData(getContext(), text_nhietdo_f, null, 1).execute(urlDoF);
+        new GetData(getContext(), text_humidity, text1, 2).execute(urlDoAm);
+        new GetData(getContext(), text_CO, text2, 3).execute(urlCO);
+        new GetData(getContext(), text_PM, text3, 4).execute(urlPM);
 
 //        hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq
 //        11:52

@@ -20,6 +20,7 @@ package com.haqyna.purelife.ui.notifications;
         import com.android.volley.toolbox.JsonArrayRequest;
         import com.android.volley.toolbox.Volley;
         import com.biansemao.widget.ThermometerView;
+        import com.haqyna.purelife.GetData;
         import com.haqyna.purelife.R;
 
         import org.json.JSONArray;
@@ -48,11 +49,11 @@ public class NotificationsFragment extends Fragment {
 
     RequestQueue requestQueue;
 
-    String urlDoC = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V5";
-    String urlDoAm = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V6";
-    String urlPM = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V7";
-    String urlCO = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V8";
-    String urlDoF = "http://188.166.206.43/hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq/get/V9";
+    String urlDoC = "http://188.166.206.43/oIXHj_zEa_p1GFQcQ12r34VRYRaORok7/get/V5";
+    String urlDoAm = "http://188.166.206.43/oIXHj_zEa_p1GFQcQ12r34VRYRaORok7/get/V6";
+    String urlPM = "http://188.166.206.43/oIXHj_zEa_p1GFQcQ12r34VRYRaORok7/get/V7";
+    String urlCO = "http://188.166.206.43/oIXHj_zEa_p1GFQcQ12r34VRYRaORok7/get/V8";
+    String urlDoF = "http://188.166.206.43/oIXHj_zEa_p1GFQcQ12r34VRYRaORok7/get/V9";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -73,7 +74,13 @@ public class NotificationsFragment extends Fragment {
         text2 = root.findViewById(R.id.text2);
         text3 = root.findViewById(R.id.text3);
 
-        requestQueue = Volley.newRequestQueue(getContext());
+//        requestQueue = Volley.newRequestQueue(getContext());
+
+        new GetData(getContext(), text_nhietdo, null,0).execute(urlDoC);
+        new GetData(getContext(), text_nhietdo_f, null, 1).execute(urlDoF);
+        new GetData(getContext(), text_humidity, text1, 2).execute(urlDoAm);
+        new GetData(getContext(), text_CO, text2, 3).execute(urlCO);
+        new GetData(getContext(), text_PM, text3, 4).execute(urlPM);
 
 //        hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq
 //        11:52

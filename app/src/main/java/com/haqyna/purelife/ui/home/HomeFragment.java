@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.biansemao.widget.ThermometerView;
-import com.haqyna.purelife.GetDoC;
+import com.haqyna.purelife.GetData;
 import com.haqyna.purelife.R;
 
 public class HomeFragment extends Fragment {
@@ -65,9 +65,13 @@ public class HomeFragment extends Fragment {
         text2 = root.findViewById(R.id.text2);
         text3 = root.findViewById(R.id.text3);
 
-        requestQueue = Volley.newRequestQueue(getContext());
+//        requestQueue = Volley.newRequestQueue(getContext());
 
-        new GetDoC(getContext(), text_nhietdo).execute(urlDoC);
+        new GetData(getContext(), text_nhietdo, null,0).execute(urlDoC);
+        new GetData(getContext(), text_nhietdo_f, null, 1).execute(urlDoF);
+        new GetData(getContext(), text_humidity, text1, 2).execute(urlDoAm);
+        new GetData(getContext(), text_CO, text2, 3).execute(urlCO);
+        new GetData(getContext(), text_PM, text3, 4).execute(urlPM);
 
 //        hTkA4mK2WW1LVUggYesKk8T0JdwIgwPq
 //        11:52
@@ -146,8 +150,6 @@ public class HomeFragment extends Fragment {
 //                            text1.setText(getString(R.string.canh_bao_nhiet_do_do_am) + getText(R.string.do_am_cao));
 //                            text1.setTextColor(Color.parseColor((String) getText(R.color.colorKhongLanhManh)));
 //                        }
-//
-//
 //                    }
 //                },
 //                new Response.ErrorListener() {
@@ -313,50 +315,6 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        switch (id) {
-//            case R.id.item1:
-////                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
-////                startActivityForResult(new Intent(getContext(), SettingActivity.class, REQUEST_CODE));
-//                startActivityForResult(new Intent(getContext(), SettingActivity.class), REQUEST_CODE);
-//
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-
-
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-////        super.onCreateOptionsMenu(menu, inflater);
-//        getActivity().getMenuInflater().inflate(R.menu.menu_main, menu);
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        switch (id) {
-//            case R.id.item1:
-////                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
-////                startActivityForResult(new Intent(getContext(), SettingActivity.class, REQUEST_CODE));
-//                startActivityForResult(new Intent(getContext() , SettingActivity.class), REQUEST_CODE);
-//
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 
     public static void chuyenNhietDo(String kieuDo) {
         if ("C".equals(kieuDo)) {
