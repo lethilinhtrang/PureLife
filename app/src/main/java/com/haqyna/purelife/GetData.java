@@ -152,7 +152,7 @@ public class GetData extends AsyncTask<String, Void, String> {
                 }
                 break;
             case 3:
-                textView.setText(context.getString(R.string.canh_bao_khi_co) + "\n" + tempDuLieu + " (µg/m3)");
+                textView.setText(context.getString(R.string.canh_bao_khi_co) + "\n" + tempDuLieu + " PPM");
                 Float CO = Float.parseFloat(tempDuLieu);
                 if ((CO >= 0f) && (CO <= 50f)) {
                     textCanhBao.setText(context.getString(R.string.canh_bao_khi_co) + context.getText(R.string.tot));
