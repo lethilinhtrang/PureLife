@@ -27,4 +27,13 @@
     <string name="do_am_cao">" cao"</string>
     <string name="do_am_thap">"  thấp(khô)"</string>
     <string name="du_lieu">Đang lấy dữ liệu...</string>
+    <string name="cuc_ki_kho_han">" cực kì khô hạn"</string>
+    <string name="kho_han">" khô hạn"</string>
+    <string name="cuc_ki_thap">" cực kì thấp"</string>
+    <string name="rat_thap">" rất thấp"</string>
+    <string name="kha_vua">" khá vừa"</string>
+    <string name="vua">" vừa"</string>
+    <string name="tuong_doi_cao">" tương đối cao"</string>
+    <string name="cao">" cao"</string>
+    <string name="bao_hoa">" bão hòa"</string>
 </resources>

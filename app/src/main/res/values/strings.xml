@@ -24,7 +24,16 @@
     <string name="nguy_hiem">" danger"</string>
     <string name="khong_khoe">" unhealthy2"</string>
     <string name="rat_nguy_hiem">" very danger"</string>
-    <string name="do_am_cao">" high"</string>
+    <string name="do_am_cao">"  high"</string>
     <string name="do_am_thap">" low"</string>
     <string name="du_lieu">Loading...</string>
+    <string name="cuc_ki_kho_han">extremely dry</string>
+    <string name="kho_han">dried</string>
+    <string name="cuc_ki_thap">extremely low</string>
+    <string name="rat_thap">very low</string>
+    <string name="kha_vua">quite fit</string>
+    <string name="vua">fit</string>
+    <string name="tuong_doi_cao">pretty high</string>
+    <string name="cao">" high"</string>
+    <string name="bao_hoa">saturation</string>
 </resources>

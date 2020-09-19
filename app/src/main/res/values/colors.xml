@@ -12,4 +12,14 @@
     <color name="colorNguyHiem">#FF3030</color>
     <color name="colorRatNguyHiem">#8B4726</color>
 
+    <color name="colorCucKiKhoHan">#AEEEEE</color>
+    <color name="colorKhoHan">#96CDCD</color>
+    <color name="colorCucKiThap">#668B8B</color>
+    <color name="colorRatThap">#48D1CC</color>
+    <color name="colorThap">#00CED1</color>
+    <color name="colorKhaVua">#40E0D0</color>
+    <color name="colorVua">#00F5FF</color>
+    <color name="colorTuongDoiCao">#00E5EE</color>
+    <color name="colorCao">#00C5CD</color>
+    <color name="colorBaoHoa">#00868B</color>
 </resources>
